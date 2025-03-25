@@ -1,41 +1,106 @@
 ﻿@model IEnumerable<GABS2025324AppWebMVC.Models.Brand>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<style>
+    body {
+        background: linear-gradient(to bottom, #4A0065, #800080, #C25997);
+        height: 150%;
+    }
+    .card-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 26%;
+        left: 16%;
+        position: absolute;
+    }
 
-<h1>Index</h1>
+    .card {
+        margin: 0 10px;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BrandName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BrandName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BrandsId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BrandsId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BrandsId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    .n4 {
+        position: absolute;
+        text-align: center;
+        left: 35%;
+        color: white;
+    }
+    label{
+        color: white;
+    }
+    h1{
+        color: white;
+    }
+    td{
+        color: white;
+    }
+</style>
+
+<h1 class="text-center mb-4">Marcas</h1>
+<hr class="text-white">
+
+<h1 class="text-white">Buscar productos</h1>
+<form asp-action="Index">
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">Nombre</label>
+                <input type="text" name="BrandName" class="form-control" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">Bobedas</label>
+                <select name="Country" class="form-control" asp-items="ViewBag.Country"></select>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">Cant. Registros</label>
+                <select name="topRegistro" class="form-control">
+                    <option selected value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="60">60</option>
+                    <option value="100">100</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                    <option value="0">Todos</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <input type="submit" value="Buscar" class="btn btn-primary" />
+            <a class="btn btn-info" asp-action="Create">Ir a crear</a>
+        </div>
+    </div>
+</form>
+
+
+<div class="container" id="mytable">
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.BrandName)</th>
+                <th>@Html.DisplayNameFor(model => model.Country)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="border border-white" ,class="table table-striped">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.BrandName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Country)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.BrandsId" class="btn btn-sm btn-primary">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.BrandsId" class="btn btn-sm btn-info">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.BrandsId" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

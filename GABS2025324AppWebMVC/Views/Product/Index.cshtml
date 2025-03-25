@@ -1,16 +1,81 @@
 ﻿@model IEnumerable<GABS2025324AppWebMVC.Models.Product>
 
-@{
-    ViewData["Title"] = "Index";
+<style>
+    body{
+        background: linear-gradient(to bottom, #4A0065, #800080, #C25997);
+        
+}
+h1{
+    color:white;
+}
+label{
+    color:white;
+}
+tr{
+    color: white;
+
+}
+th{
+    color: white;
 }
 
-<h1>Index</h1>
+</style>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<h1>Buscar productos</h1>
+<form asp-action="Index">
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">Nombre</label>
+                <input type="text" name="ProductName" class="form-control" />
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="form-group">
+                <label class="control-label">Descripcion</label>
+                <textarea name="Description" class="form-control"></textarea>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">Marcas</label>
+                <select name="brandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">Categorias</label>
+                <select name="WarehouseId" class="form-control" asp-items="ViewBag.WarehouseId"></select>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">Cant. Registros</label>
+                <select name="topRegistro" class="form-control">
+                    <option selected value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="60">60</option>
+                    <option value="100">100</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                    <option value="0">Todos</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <input type="submit" value="Buscar" class="btn btn-primary" />
+            <a class="btn btn-info" asp-action="Create">Ir a crear</a>
+        </div>
+    </div>
+</form>
+
+<table class="table" id="mytable">
+    <thead class="table-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ProductName)
@@ -36,7 +101,8 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+	<tbody>
+		class="border border-white" ,class="table table-striped"
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -55,17 +121,25 @@
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Brand.BrandsId)
+                @Html.DisplayFor(modelItem => item.Brand.BrandName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Warehouse.WarehouseId)
+                @Html.DisplayFor(modelItem => item.Warehouse.WarehouseName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                    <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.ProductId">Editar</a> |
+                    <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.ProductId">Detalles</a> |
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ProductId">Eliminar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function(){
+            $('#mytable').DataTable();
+        });
+    </script>
+}
