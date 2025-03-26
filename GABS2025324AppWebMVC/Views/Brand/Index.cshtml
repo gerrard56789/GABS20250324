@@ -39,7 +39,47 @@
 <hr class="text-white">
 
 
+<div class="container">
+    <h1 class="text-center mb-4">Buscar Productos</h1>
+    <hr>
 
+    <form asp-action="Index">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="BrandName" class="control-label">Nombre</label>
+                    <input type="text" name="BrandName" id="BrandName" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Country" class="control-label">País</label>
+                    <select name="Country" id="Country" class="form-control" asp-items="ViewBag.Country"></select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="topRegistro" class="control-label">Cant. Registros</label>
+                    <select name="topRegistro" id="topRegistro" class="form-control">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="60">60</option>
+                        <option value="100">100</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                        <option value="0">Todos</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12 text-center">
+                <input type="submit" value="Buscar" class="btn btn-primary" />
+                <a asp-action="Create" class="btn btn-info ml-2">Ir a crear</a>
+            </div>
+        </div>
+    </form>
+</div>
 
 
 <div class="container" id="mytable">

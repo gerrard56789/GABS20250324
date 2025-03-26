@@ -97,7 +97,7 @@ namespace GABS2025324AppWebMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Description,Price,PurchasePrice,WarehouseId,BrandId,Notes")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Description,Price,PurchasePrice,WarehouseId,BrandId,")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +133,7 @@ namespace GABS2025324AppWebMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Description,Price,PurchasePrice,WarehouseId,BrandId,Notes")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Description,Price,PurchasePrice,WarehouseId,BrandId,")] Product product)
         {
             if (id != product.ProductId)
             {

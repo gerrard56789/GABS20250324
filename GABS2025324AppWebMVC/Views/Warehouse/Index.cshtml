@@ -1,34 +1,74 @@
 ﻿@model IEnumerable<GABS2025324AppWebMVC.Models.Warehouse>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<style>
+    body {
+        background: linear-gradient(to bottom, #4A0065, #800080, #C25997);
+    }
 
-<h1>Index</h1>
+    h1 {
+        color: white;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+    label {
+        color: white;
+    }
+
+    tr {
+        color: white;
+    }
+
+    th {
+        color: white;
+    }
+
+</style>
+
+<h1>Buscar productos</h1>
+<form asp-action="Index">
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">Nombre de la Bodega</label>
+                <input type="text" name="WarehouseName" class="form-control" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">Cant. Registros</label>
+                <select name="topRegistro" class="form-control">
+                    <option selected value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="60">60</option>
+                    <option value="100">100</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                    <option value="0">Todos</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <input type="submit" value="Buscar" class="btn btn-primary" />
+            <a class="btn btn-info" asp-action="Create">Ir a crear</a>
+        </div>
+    </div>
+</form>
+
+<table class="table" id="MyTable">
+    <thead class="table-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.WarehouseName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes)
-            </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="border border-white" >
 @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.WarehouseName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.WarehouseId">Edit</a> |
@@ -39,3 +79,15 @@
 }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function(){
+
+
+            $('#MyTable').DataTable({
+               "language":languageTable
+             });
+        });
+    </script>
+}

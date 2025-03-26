@@ -24,11 +24,8 @@ namespace GABS2025324AppWebMVC.Controllers
             _context = context;
         }
 
-        // GET: User
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Users.ToListAsync());
-        }
+
+  
 
         // GET: User/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -59,7 +56,7 @@ namespace GABS2025324AppWebMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,Username,Email,Password,Role,Notes")] User user)
+        public async Task<IActionResult> Create([Bind("UserId,Username,Email,Password,Role,")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +130,7 @@ namespace GABS2025324AppWebMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,Username,Email,Password,Role,Notes")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,Username,Email,Password,Role")] User user)
         {
             if (id != user.UserId)
             {

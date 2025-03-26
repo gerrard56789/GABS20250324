@@ -18,10 +18,19 @@ namespace GABS2025324AppWebMVC.Controllers
             _context = context;
         }
 
-        // GET: Warehouse
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Warehouse warehouse, int topRegistro = 10)
         {
-            return View(await _context.Warehouses.ToListAsync());
+            var query = _context.Warehouses.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(warehouse.WarehouseName))
+                query = query.Where(s => s.WarehouseName.Contains(warehouse.WarehouseName));
+            if (warehouse.WarehouseId > 0)
+                query = query.Where(s => s.WarehouseId == warehouse.WarehouseId);
+            if (warehouse.WarehouseId > 0)
+                query = query.Where(s => s.WarehouseId == warehouse.WarehouseId);
+            if (topRegistro > 0)
+                query = query.Take(topRegistro);
+
+            return View(await query.ToListAsync());
         }
 
         // GET: Warehouse/Details/5
@@ -53,7 +62,7 @@ namespace GABS2025324AppWebMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WarehouseId,WarehouseName,Notes")] Warehouse warehouse)
+        public async Task<IActionResult> Create([Bind("WarehouseId,WarehouseName,")] Warehouse warehouse)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +94,7 @@ namespace GABS2025324AppWebMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("WarehouseId,WarehouseName,Notes")] Warehouse warehouse)
+        public async Task<IActionResult> Edit(int id, [Bind("WarehouseId,WarehouseName,")] Warehouse warehouse)
         {
             if (id != warehouse.WarehouseId)
             {

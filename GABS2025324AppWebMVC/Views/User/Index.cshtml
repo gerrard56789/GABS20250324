@@ -21,7 +21,6 @@
                 <th class="text-white">@Html.DisplayNameFor(model => model.Email)</th>
                 <th class="text-white">@Html.DisplayNameFor(model => model.Password)</th>
                 <th class="text-white">@Html.DisplayNameFor(model => model.Role)</th>
-                <th class="text-white">@Html.DisplayNameFor(model => model.Notes)</th>
                 <th></th>
             </tr>
         </thead>
@@ -33,7 +32,6 @@
                     <td class="text-white">@Html.DisplayFor(modelItem => item.Email)</td>
                     <td class="text-white">@Html.DisplayFor(modelItem => item.Password)</td>
                     <td class="text-white">@Html.DisplayFor(modelItem => item.Role)</td>
-                    <td class="text-white">@Html.DisplayFor(modelItem => item.Notes)</td>
                     <td>
                         <div class="d-flex justify-content-around">
                             <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-sm btn-primary">Editar</a>
