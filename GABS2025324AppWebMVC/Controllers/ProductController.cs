@@ -18,50 +18,32 @@ namespace GABS2025324AppWebMVC.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(Product Product, int topRegistro = 10)
+        public async Task<IActionResult> Index(Product products, int topRegistro = 10)
         {
-            try
-            {
-                var query = _context.Products.AsQueryable();
-                if (!string.IsNullOrWhiteSpace(Product.ProductName))
-                    query = query.Where(p => p.ProductName.Contains(Product.ProductName));
-
-                if (!string.IsNullOrWhiteSpace(Product.Description))
-                    query = query.Where(p => p.Description.Contains(Product.Description));
-
-                if (Product.BrandId > 0)
-                    query = query.Where(p => p.BrandId == Product.BrandId);
-
-                if (Product.WarehouseId > 0)
-                    query = query.Where(p => p.WarehouseId == Product.WarehouseId);
-
+            var query = _context.Products.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(products.ProductName))
+                query = query.Where(s => s.ProductName.Contains(products.ProductName));
+            if (!string.IsNullOrWhiteSpace(products.Description))
+                query = query.Where(s => s.Description.Contains(products.Description));
+            if (products.BrandId > 0)
+                query = query.Where(s => s.BrandId == products.BrandId);
+            if (products.WarehouseId > 0)
+                query = query.Where(s => s.WarehouseId == products.WarehouseId);
+            if (topRegistro > 0)
                 query = query.Take(topRegistro);
+            query = query
+                .Include(p => p.Warehouse).Include(p => p.Brand);
 
+            var marcas = _context.Brands.ToList();
+            marcas.Add(new Brand { BrandName = "SELECCIONAR", BrandsId = 0 });
 
-                query = query.Include(p => p.WarehouseId)
-                             .Include(p => p.Brand);
+            var categorias = _context.Warehouses.ToList();
+            categorias.Add(new Warehouse { WarehouseName = "SELECCIONAR", WarehouseId = 0 });
 
+            ViewBag.bodegaId = new SelectList(categorias, "Id", "WarehouseName", 0);
+            ViewBag.marcaId = new SelectList(marcas, "Id", "BrandName", 0);
 
-                var productos = await query.ToListAsync();
-
-
-                var marcas = _context.Brands.ToList();
-                marcas.Insert(0, new Brand { BrandName = "SELECCIONAR", BrandsId = 0 });
-
-                var categorias = _context.Warehouses.ToList();
-                categorias.Insert(0, new Warehouse { WarehouseName = "SELECCIONAR", WarehouseId = 0 });
-
-                ViewData["WarehouseId"] = new SelectList(categorias, "WarehouseId", "WarehouseName", 0);
-                ViewData["BrandId"] = new SelectList(marcas, "BrandId", "BrandName", 0);
-
-                return View(productos);
-            }
-            catch (Exception ex)
-            {
-
-                ViewBag.ErrorMessage = "Ha ocurrido un error al cargar los productos.";
-                return View(new List<Product>());
-            }
+            return View(await query.ToListAsync());
         }
 
         // GET: Product/Details/5

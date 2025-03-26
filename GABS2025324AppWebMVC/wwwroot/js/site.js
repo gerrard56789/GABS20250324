@@ -4,7 +4,6 @@
 // Write your JavaScript code.
 
 var languageTable = {
-    "lengthMenu": "Mostrar MENU registros",
     "zeroRecords": "No se encontraron resultados",
     "info": "Mostrando START a END de TOTAL registros",
     "infoEmpty": "Mostrando 0 a 0 de 0 registros",
