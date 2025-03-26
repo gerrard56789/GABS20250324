@@ -1,33 +1,29 @@
 ﻿@model GABS2025324AppWebMVC.Models.Warehouse
 
-@{
-    ViewData["Title"] = "Create";
-}
 
-<h1>Create</h1>
+<div class="container">
+    <h1 class="text-center mb-4">Crear Almacén</h1>
+    <hr>
 
-<h4>Warehouse</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="WarehouseName" class="control-label"></label>
-                <input asp-for="WarehouseName" class="form-control" />
-                <span asp-validation-for="WarehouseName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="WarehouseName" class="control-label">Nombre del almacén</label>
+                    <input asp-for="WarehouseName" class="form-control" />
+                    <span asp-validation-for="WarehouseName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Crear" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary ml-2">Volver a la lista</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

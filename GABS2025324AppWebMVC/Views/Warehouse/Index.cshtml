@@ -56,7 +56,7 @@
 </form>
 
 <table class="table" id="MyTable">
-    <thead class="table-dark">
+    <thead class="table-dark  table-bordered">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.WarehouseName)
@@ -64,21 +64,22 @@
             <th></th>
         </tr>
     </thead>
-    <tbody class="border border-white" >
+    <tbody >
 @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.WarehouseName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.WarehouseId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.WarehouseId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.WarehouseId">Delete</a>
+                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.WarehouseId">Editar</a> |
+                    <a asp-action="Details" class="btn btn-success" asp-route-id="@item.WarehouseId">Detalles</a> |
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.WarehouseId">Eliminar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
 
 @section Scripts {
     <script>

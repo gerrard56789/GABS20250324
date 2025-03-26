@@ -1,27 +1,30 @@
 ﻿@model GABS2025324AppWebMVC.Models.Warehouse
 
-@{
-    ViewData["Title"] = "Delete";
-}
 
-<h1>Delete</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Warehouse</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WarehouseName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.WarehouseName)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="WarehouseId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h3 class="text-center mb-4 text-danger">¿Estás seguro que quieres eliminar esto?</h3>
+            <h4 class="text-center mb-4">Almacén</h4>
+            <hr>
+
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th scope="row">Nombre del almacén</th>
+                        <td>@Html.DisplayFor(model => model.WarehouseName)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="mt-4 text-center">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="WarehouseId" />
+                    <input type="submit" value="Eliminar" class="btn btn-danger" />
+                    <a asp-action="Index" class="btn btn-secondary ml-2">Volver a la lista</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
