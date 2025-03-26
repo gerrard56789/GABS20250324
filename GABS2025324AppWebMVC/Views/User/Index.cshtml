@@ -1,59 +1,46 @@
 ﻿@model IEnumerable<GABS2025324AppWebMVC.Models.User>
 
-@{
-    ViewData["Title"] = "Index";
-}
+    <style>
+        body{
+        background-image: url(https://img.freepik.com/foto-gratis/puesta-sol-siluetas-arboles-montanas-ia-generativa_169016-29371.jpg?t=st=1742689136~exp=1742692736~hmac=35fe82704cfdb9f867c317b370b90f54bdceb550068035a6959b04d563d11b1e&w=1060);
+        }
+    </style>
 
-<h1>Index</h1>
+<div class="container">
+  <h1 class="text-center mb-4 text-white">Usuarios</h1>
+  <hr class="border-white">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+  <p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo</a>
+  </p>
+
+    <table class="table table-bordered table table-striped table-hover " style=" backdrop-filter: blur(5px);">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Username)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Role)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes)
-            </th>
-            <th></th>
-        </tr>
+      <tr>
+        <th class="text-white">@Html.DisplayNameFor(model => model.Username)</th>
+        <th class="text-white">@Html.DisplayNameFor(model => model.Email)</th>
+        <th class="text-white">@Html.DisplayNameFor(model => model.Password)</th>
+        <th class="text-white">@Html.DisplayNameFor(model => model.Role)</th>
+        <th class="text-white">@Html.DisplayNameFor(model => model.Notes)</th>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+      @foreach (var item in Model)
+      {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
-            </td>
+          <td class="text-white">@Html.DisplayFor(modelItem => item.Username)</td>
+          <td class="text-white">@Html.DisplayFor(modelItem => item.Email)</td>
+          <td class="text-white">@Html.DisplayFor(modelItem => item.Password)</td>
+          <td class="text-white">@Html.DisplayFor(modelItem => item.Role)</td>
+          <td class="text-white">@Html.DisplayFor(modelItem => item.Notes)</td>
+          <td>
+            <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-sm btn-primary">Editar</a>
+            <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-sm btn-info ml-1">Detalles</a>
+            <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-sm btn-danger ml-1">Eliminar</a>
+          </td>
         </tr>
-}
+      }
     </tbody>
-</table>
+  </table>
+</div>

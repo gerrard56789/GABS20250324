@@ -152,5 +152,7 @@ namespace GABS2025324AppWebMVC.Controllers
         {
             return _context.Brands.Any(e => e.BrandsId == id);
         }
+
+
     }
 }

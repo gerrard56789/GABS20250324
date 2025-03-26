@@ -1,0 +1,126 @@
+﻿@model GABS2025324AppWebMVC.Models.User
+
+
+<style>
+
+    body {
+        background-image: url(https://img.freepik.com/foto-gratis/puesta-sol-siluetas-arboles-montanas-ia-generativa_169016-29371.jpg?t=st=1742689136~exp=1742692736~hmac=35fe82704cfdb9f867c317b370b90f54bdceb550068035a6959b04d563d11b1e&w=1060);
+        background-color: #4d5656;
+    }
+    /* Contenedor Principal */
+    .login-container {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        left: 330px;
+        top: 50px;
+        backdrop-filter: blur(5px); /* Desenfoque del fondo */
+    }
+
+    .n0 {
+        color: white;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .n1 {
+        color: white;
+        font-size: 16px;
+        text-align: center;
+        top: 15px;
+        position: relative;
+    }
+
+    /* Encabezado */
+    .login-box h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+        color: white;
+        text-align: center;
+    }
+
+    .login-box p {
+        color: #666;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Input Styling */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1em;
+        box-sizing: border-box;
+    }
+
+    /* Botón de inicio de sesión */
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        background: linear-gradient(135deg, #202121, red);
+        border: none;
+        color: white;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, red, #202121);
+            transform: translateY(-2px);
+        }
+
+    /* Texto de registro */
+    .signup-text {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 0.9em;
+    }
+
+        .signup-text a {
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .signup-text a:hover {
+                text-decoration: underline;
+            }
+</style>
+
+<div class="login-container">
+    <div class="login-box">
+        <h1>INICIAR SESION</h1>
+        <h2 class="n0">Umbrella corporation</h2>
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Email" class="form-control" placeholder="Colocar Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Password" class="form-control" type="password" placeholder="Colocar Contraseña" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Iniciar</button>
+            <h2 class="n1">*Acepto los términos y condiciones de Umbrella.*</h2>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
