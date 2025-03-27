@@ -40,8 +40,8 @@ namespace GABS2025324AppWebMVC.Controllers
             var categorias = _context.Warehouses.ToList();
             categorias.Add(new Warehouse { WarehouseName = "SELECCIONAR", WarehouseId = 0 });
 
-            ViewBag.bodegaId = new SelectList(categorias, "Id", "WarehouseName", 0);
-            ViewBag.marcaId = new SelectList(marcas, "Id", "BrandName", 0);
+            ViewData["WarehouseId"] = new SelectList(categorias, "WarehouseId", "WarehouseName", 0);
+            ViewData["BrandsId"] = new SelectList(marcas, "BrandsId", "BrandName", 0);
 
             return View(await query.ToListAsync());
         }
